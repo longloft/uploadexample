@@ -1,0 +1,77 @@
+<html ng-app="app">
+
+<head>
+    <title>Upload Example</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
+    <script src="./node_modules/angular-animate/angular-animate.js"></script>
+    <script src="./node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="./example.js"></script>
+
+    <style>
+        .drop-box {
+            background: #F8F8F8;
+            border: 5px dashed #DDD;
+            text-align: center;
+            padding-top: 35px;
+            padding-bottom: 35px;
+            cursor: pointer;
+        }
+        
+        .dragover {
+            border: 5px dashed #8CA0A5;
+        }
+    </style>
+</head>
+
+<body ng-controller="addImageController">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div ngf-select="fileSelected($files, $file, $newFiles)" ngf-drop="fileSelected($files, $file, $newFiles)" ng-model="files" ngf-multiple="true" multiple="true" ngf-max-size="50MB" ngf-keep="'distinct'" ngf-accept="['image/png','image/jpg','image/jpeg','image/gif']"
+                    class="drop-box well" ngf-drag-over-class="'dragover'" ngf-validate-after-resize="boolean" ngf-pattern="'image/png,image/jpg,image/jpeg,image/gif'">
+                    <i class="fa fa-file-image-o fa-4x" aria-hidden="true"></i><br /> Drop Here or click
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="file in files track by $index">
+
+
+                        <div class="row">
+                            <div class="col-xs-12 form-group">
+                                <img id="image-{{$index}}" ngf-src="file" class="max-height-150 img-responsive center-horizantally" style="max-width: 100px; max-height: 100px;" />
+                            </div>
+                        </div>
+
+                        <div class="row" ng-if="isUploadingFiles">
+                            <div class="col-xs-12">
+                                <label ng-if="file.progress != 100">Progress</label>
+                                <label ng-if="file.progress == 100">Complete</label>
+                                <uib-progressbar max="100" value="file.progress"></uib-progressbar>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-primary" ng-disabled="!files.length" ng-click="uploadFiles()">Upload All Images</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
