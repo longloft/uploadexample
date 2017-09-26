@@ -55,7 +55,7 @@
                             </div>
                         </div>
 
-                        <div class="row" ng-if="isUploadingFiles">
+                        <div class="row" ng-if="file.progress">
                             <div class="col-xs-12">
                                 <label ng-if="file.progress != 100">Progress</label>
                                 <label ng-if="file.progress == 100">Complete</label>
