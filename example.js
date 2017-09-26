@@ -6,14 +6,9 @@
             function($scope, Upload) {
                 $scope.files = [];
 
-                $scope.fileSelected = function(files, file, newFiles) {
-                    if (newFiles && newFiles.length) {
-                        angular.forEach(newFiles, function(file) {
-                            file.path = $scope.path;
-                        });
-                    }
+                $scope.clearFiles = function() {
+                    $scope.files.length = 0;
                 };
-
 
                 var uploadFile = function(file) {
                     var fileData = {

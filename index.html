@@ -38,16 +38,15 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <div ngf-select="fileSelected($files, $file, $newFiles)" ngf-drop="fileSelected($files, $file, $newFiles)" ng-model="files" ngf-multiple="true" multiple="true" ngf-max-size="50MB" ngf-keep="'distinct'" ngf-accept="['image/png','image/jpg','image/jpeg','image/gif']"
-                    class="drop-box well" ngf-drag-over-class="'dragover'" ngf-validate-after-resize="boolean" ngf-pattern="'image/png,image/jpg,image/jpeg,image/gif'">
-                    <i class="fa fa-file-image-o fa-4x" aria-hidden="true"></i><br /> Drop Here or click
+                <div ngf-select ngf-drop ng-model="files" ngf-multiple="true" multiple="true" ngf-max-size="50MB" ngf-keep="'distinct'" ngf-accept="['image/png','image/jpg','image/jpeg','image/gif']" class="drop-box well" ngf-drag-over-class="'dragover'" ngf-validate-after-resize="boolean"
+                    ngf-pattern="'image/png,image/jpg,image/jpeg,image/gif'">
+                    Drop Here or Click
                 </div>
             </div>
 
             <div class="col-xs-12">
                 <ul class="list-group">
                     <li class="list-group-item" ng-repeat="file in files track by $index">
-
 
                         <div class="row">
                             <div class="col-xs-12 form-group">
@@ -68,6 +67,7 @@
 
             <div class="col-xs-12">
                 <button type="button" class="btn btn-primary" ng-disabled="!files.length" ng-click="uploadFiles()">Upload All Images</button>
+                <button type="button" class="btn btn-default" ng-disabled="!files.length" ng-click="clearFiles()">Clear Selected</button>
             </div>
         </div>
     </div>
